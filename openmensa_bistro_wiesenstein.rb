@@ -52,7 +52,7 @@ def render_openmensa(all_dishes, soups)
               daily_dishes[:dishes].each do |dish|
                 xml.meal do
                   xml.name(dish[:name])
-                  xml.price(dish[:price])
+                  xml.price(price(dish[:price]))
                 end
               end
             end
@@ -61,7 +61,7 @@ def render_openmensa(all_dishes, soups)
               soups.each do |dish|
                 xml.meal do
                   xml.name(dish[:name])
-                  xml.price(dish[:price])
+                  xml.price(price(dish[:price]))
                 end
               end
             end
@@ -70,4 +70,9 @@ def render_openmensa(all_dishes, soups)
       end
     end
   end
-end  
+end
+
+
+def price(p)
+  p.gsub(',', '.').to_f
+end
