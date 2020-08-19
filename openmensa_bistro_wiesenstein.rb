@@ -52,7 +52,7 @@ def render_openmensa(all_dishes, soups)
               daily_dishes[:dishes].each do |dish|
                 xml.meal do
                   xml.name(dish[:name])
-                  xml.price(price(dish[:price]))
+                  xml.price(role: 'other') { xml.text price(dish[:price]) }
                 end
               end
             end
@@ -61,7 +61,7 @@ def render_openmensa(all_dishes, soups)
               soups.each do |dish|
                 xml.meal do
                   xml.name(dish[:name])
-                  xml.price(price(dish[:price]))
+                  xml.price(role: 'other') { xml.text price(dish[:price]) }
                 end
               end
             end
