@@ -8,9 +8,13 @@ get '/' do
 
   date_matches = menu.at('.zh_slider_karte_title')
                      .text
-                     .match(/\D*(\d+)\.\s?-\s?\d+\.(\d+)\./)#
+                     .match(/\D*(\d{2})\.?(\d{2})?\.\s?-\s?\d+\.(\d+)\./)
 
-  start_date = Date.new(Date.today.year, date_matches[2].to_i, date_matches[1].to_i)
+  start_date = Date.new(
+    Date.today.year,
+    date_matches[2].to_i || date_matches[3].to_i,
+    date_matches[1].to_i
+  )
 
   daily_dishes = nil
   weekday = 0
