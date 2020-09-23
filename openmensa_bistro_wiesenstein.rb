@@ -4,7 +4,9 @@ require 'open-uri'
 require 'active_support/time'
 
 get '/' do
-  menu = Nokogiri::HTML(open('https://www.bistro-wiesenstein.de/'))
+  site = Nokogiri::HTML(open('https://www.bistro-wiesenstein.de/'))
+
+  menu = site.at('.zh_slider_karten')
 
   date_matches = menu.at('.zh_slider_karte_title')
                      .text
